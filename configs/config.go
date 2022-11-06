@@ -1,6 +1,8 @@
 package configs
 
-import "os"
+import (
+	"os"
+)
 
 const (
 	prod = "production"
@@ -27,16 +29,23 @@ func (c Config) IsProd() bool {
 // GetConfig gets all config for the application
 func GetConfig() Config {
 	return Config{
-		Env:       os.Getenv("ENV"),
-		Pepper:    os.Getenv("PEPPER"),
-		HMACKey:   os.Getenv("HMAC_KEY"),
+		Pepper:    GetEnvOrDefaultValue("PEPPER", ""),
+		HMACKey:   GetEnvOrDefaultValue("HMAC_KEY", ""),
+		JWTSecret: GetEnvOrDefaultValue("JWT_SIGN_KEY", ""),
 		Postgres:  GetPostgresConfig(),
 		Mailgun:   GetMailgunConfig(),
-		JWTSecret: os.Getenv("JWT_SIGN_KEY"),
-		Host:      os.Getenv("APP_HOST"),
-		Port:      os.Getenv("APP_PORT"),
-		FromEmail: os.Getenv("EMAIL_FROM"),
+		Host:      GetEnvOrDefaultValue("APP_HOST", ""),
+		Port:      GetEnvOrDefaultValue("APP_PORT", ""),
+		FromEmail: GetEnvOrDefaultValue("EMAIL_FROM", ""),
 	}
+}
+
+func GetEnvOrDefaultValue(key string, def string) string {
+	env, b := os.LookupEnv(key)
+	if !b {
+		return def
+	}
+	return env
 }
 
 //------------- Viper Implementation -------------------

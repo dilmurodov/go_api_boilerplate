@@ -2,8 +2,8 @@ package configs
 
 import (
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/spf13/cast"
 )
 
 // PostgresConfig object
@@ -34,16 +34,12 @@ func (c PostgresConfig) GetPostgresConnectionInfo() string {
 
 // GetPostgresConfig returns PostgresConfig object
 func GetPostgresConfig() PostgresConfig {
-	port, err := strconv.Atoi(os.Getenv("DB_PORT"))
-	if err != nil {
-		panic(err)
-	}
 
 	return PostgresConfig{
-		Host:     os.Getenv("DB_HOST"),
-		Port:     port,
-		User:     os.Getenv("DB_USER"),
-		Password: os.Getenv("DB_PASSWORD"),
-		Name:     os.Getenv("DB_NAME"),
+		Host:     GetEnvOrDefaultValue("DB_HOST", "0.0.0.0"),
+		Port:     cast.ToInt(GetEnvOrDefaultValue("DB_PORT", "5432")),
+		User:     GetEnvOrDefaultValue("DB_USER", "postgres"),
+		Password: GetEnvOrDefaultValue("DB_PASSWORD", "postgres"),
+		Name:     GetEnvOrDefaultValue("DB_NAME", "db_name"),
 	}
 }
