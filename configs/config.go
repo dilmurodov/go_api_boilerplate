@@ -34,8 +34,8 @@ func GetConfig() Config {
 		JWTSecret: GetEnvOrDefaultValue("JWT_SIGN_KEY", ""),
 		Postgres:  GetPostgresConfig(),
 		Mailgun:   GetMailgunConfig(),
-		Host:      GetEnvOrDefaultValue("APP_HOST", ""),
-		Port:      GetEnvOrDefaultValue("APP_PORT", ""),
+		Host:      GetEnvOrDefaultValue("APP_HOST", "0.0.0.0"),
+		Port:      GetEnvOrDefaultValue("APP_PORT", "9000"),
 		FromEmail: GetEnvOrDefaultValue("EMAIL_FROM", ""),
 	}
 }

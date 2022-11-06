@@ -16,8 +16,18 @@ services:
     ports:
       - 9000:9000
     restart: always
+    environment:
+      - APP_PORT=9000
     depends_on:
       - pg
+   
+  nginx:
+    build: ./nginx
+    depends_on:
+      - go
+    ports:
+      - "8080:8080"
+    restart: always
 
 volumes:
   data:

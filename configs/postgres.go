@@ -37,9 +37,9 @@ func GetPostgresConfig() PostgresConfig {
 
 	return PostgresConfig{
 		Host:     GetEnvOrDefaultValue("DB_HOST", "0.0.0.0"),
-		Port:     cast.ToInt(GetEnvOrDefaultValue("DB_PORT", "5432")),
-		User:     GetEnvOrDefaultValue("DB_USER", "postgres"),
-		Password: GetEnvOrDefaultValue("DB_PASSWORD", "postgres"),
-		Name:     GetEnvOrDefaultValue("DB_NAME", "db_name"),
+		Port:     cast.ToInt(GetEnvOrDefaultValue("DB_PORT", "6543")),
+		User:     GetEnvOrDefaultValue("DB_USER", "dev_user"),
+		Password: GetEnvOrDefaultValue("DB_PASSWORD", "123test"),
+		Name:     GetEnvOrDefaultValue("DB_NAME", "base_dev"),
 	}
 }

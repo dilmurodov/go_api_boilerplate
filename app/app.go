@@ -2,7 +2,6 @@ package app
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/yhagio/go_api_boilerplate/common/hmachash"
@@ -69,7 +68,7 @@ func Run() {
 		====== Setup configs ============
 	*/
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+		fmt.Println(err.Error())
 	}
 	config := configs.GetConfig()
 
