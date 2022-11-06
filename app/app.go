@@ -12,6 +12,7 @@ import (
 	"github.com/yhagio/go_api_boilerplate/domain/user"
 
 	"github.com/yhagio/go_api_boilerplate/gql"
+	// _ "github.com/99designs/gqlgen"
 	"github.com/yhagio/go_api_boilerplate/infra/mailgunclient"
 	"github.com/yhagio/go_api_boilerplate/middlewares"
 

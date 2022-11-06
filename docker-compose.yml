@@ -8,8 +8,16 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 6543:5432
     restart: always
+  go:
+    build: .
+    container_name: go-server
+    ports:
+      - 9000:9000
+    restart: always
+    depends_on:
+      - pg
 
 volumes:
   data:

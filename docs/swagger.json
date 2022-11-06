@@ -325,9 +325,7 @@
                 "code": {
                     "type": "integer"
                 },
-                "data": {
-                    "type": "object"
-                },
+                "data": {},
                 "msg": {
                     "type": "string"
                 }
